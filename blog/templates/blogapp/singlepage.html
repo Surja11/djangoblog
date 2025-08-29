@@ -1,0 +1,34 @@
+{% extends 'base.html'%}
+{%block content%}
+<br>
+<div class="d-flex flex-column justify-content-between align-items-center">
+  <h2 style="text-align: center;">{{blog.title}}</h2>
+<Br>
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    {% if blog.image %}
+    <img src="{{blog.image.url}}" alt="image" style="max-width: 80%; height: 
+    500px">
+    {%endif%}
+    <br><Br>
+      <br>
+    <div style="font-size: 1.5rem;">
+      {{blog.description}}
+    </div>
+    <br><br>
+    <div style="text-align: center;">
+      <p>Author: {{blog.author}}</p>
+      <p>Date: {{blog.edited_date}}</p>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="d-flex flex-row justify-content-around align-items-center">
+{%if blog.author == user.username%}
+<a class="btn btn-secondary" style="color:white" href="{% url 'editblog' blog.id%}">Edit the blog</a>
+<a class="btn btn-danger" style="color:white" href="{%url 'deleteblog' blog.id%}">Delete the blog</a>
+{%endif%}
+</div>
+<br><br>
+{%endblock%}

@@ -1,0 +1,35 @@
+
+{% extends 'base.html' %}
+{%load static%}
+{% block content%}
+<h2 style="text-align: center">{{message}}</h2>
+<br><br>
+  <div class="d-flex flex-wrap justify-content-around mt-4">
+
+{%for blog in blogs%}
+  <div class="card" style="width: 18rem;">
+    {% if blog.image%}
+  <img class="card-img-top" src="{{blog.image.url}}" alt="Card image cap" height= 150 width=100>
+  {%else%}
+    <img class="card-img-top" src="{%static 'default.webp'%}" alt="Card image cap" height= 150 width=100>
+  {%endif%}
+  <div class="card-body">
+    <h5 class="card-title">{{blog.title}}</h5>
+    <p class="card-text">{{blog.description|truncatewords:10}}...</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item" style="font-size: 0.9rem">{{blog.author}}</li>
+    {% comment %} <li class="list-group-item" style = "font-size:0.7rem">{{blog.published_date}}</li> {% endcomment %}
+    {%if blog.edited_date%}
+    <li class="list-group-item" style = "font-size:0.7rem">{{blog.edited_date}}</li>
+    {%endif%}
+  </ul>
+  <div class="card-body">
+    <a href="/readblog/{{blog.id}}" class="card-link" style = "font-size:0.8rem">Read the blog</a>
+   
+  </div>
+</div>
+{%endfor%}
+
+</div>
+{% endblock %}

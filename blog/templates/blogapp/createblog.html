@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+{%block content%}
+<div>
+<form method = "post" action = "{%url 'createPost'%}" enctype="multipart/form-data">
+  {% csrf_token %}
+    <div class="form-group col-md-6">
+      <label for="title">Blog-Title</label>
+      <input type="name" class="form-control" id="title" placeholder="Title" name="title">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="image">Image</label>
+      <input type="file"  id="image" name = "image">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="content" style="margin-left:1rem">Content</label>
+    <textarea rows =15 class="form-control" id="content" name="content" style="margin-left:1rem"></textarea>
+
+ 
+  <button type="submit" class="btn btn-primary" style="margin:1rem">Post</button>
+</form>
+</div>
+{%endblock%}
